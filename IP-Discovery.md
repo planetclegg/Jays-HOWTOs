@@ -1,8 +1,9 @@
+### How to connect to a raspi or any linux link-local machine directly, without knowing its IP address in advance.
 
+#### Problem:  Headless raspi, unknown IP.  Need to ssh into it to shut it down or something.  
 
-## How to connect to a raspi or any linux link-local machine directly, without knowing its IP address in advance.
+```text
 
-# Problem:  Headless raspi, unknown IP.  Need to ssh into it to shut it down or something.  
 
 # if its not been connected to a dhcp network or otherwise configured for static IP, 
 # it probably has a Link-Local address of the form 169.254.x.x (https://en.wikipedia.org/wiki/Link-local_address)
@@ -10,8 +11,8 @@
 # Connect a unix/linux/osx computer directly to it via ethernet (raspi supports auto-mdx, so does mac and most
 # modern machines, but if you're unsure use a crossover cable or ethernet hub)
 
-#note: wherever you see "eth0" below, substitute the correct network interface (eth0, wlan0, en0, etc).  
-#      use "ifconfig" with no options to dump all interaces
+# note: wherever you see "eth0" below, substitute the correct network interface (eth0, wlan0, en0, etc).  
+#       use "ifconfig" with no options to dump all interaces
 
 # Force that machine to also have a link-local address, if it doesn't have one already:
 
@@ -28,11 +29,11 @@ arp -a -n -i eth0
 
 # if the raspi has booted already, may need to use an arp scanner (nmap or arp-scan).  
 # arp-scan is arguably simpler, install via:
-	OSX: brew install arp-scan
-	debian/ubuntu/etc:   apt-get install arp-scan
-	Windows: may God have mercy on your soul
+#	OSX: brew install arp-scan
+#	debian/ubuntu/etc:   apt-get install arp-scan
+#	Windows: may God have mercy on your soul
 
-# Must be run as root!  -l == local network. --retry=1 to reduce retries if you're in a hurry
+### Must be run as root!  -l == local network. --retry=1 to reduce retries if you're in a hurry
 
 sudo arp-scan --verbose -l --retry=1      
 
@@ -58,5 +59,5 @@ nmap -6 --script=targets-ipv6-multicast-*
 
 ssh -6 pi@fe80::1234::4567::abcd::9876%eth0
 
-
+```
 
