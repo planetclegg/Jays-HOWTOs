@@ -18,7 +18,7 @@
 
 ifconfig eth0 169.254.2.2   # .2.2 chosen "randomly"
 
-# (on linux, had to "service network-manager stop"  to keep interface from reverting couple of minutes)
+# (on linux, had to "service network-manager stop"  to keep interface from reverting every couple of minutes)
 
 # If raspi hasn't booted yet, you can probably sniff its arp packets on boot to discover its address with wireshark or tcpdump:
 
@@ -29,11 +29,11 @@ arp -a -n -i eth0
 
 # if the raspi has booted already, may need to use an arp scanner (nmap or arp-scan).  
 # arp-scan is arguably simpler, install via:
-#	OSX: brew install arp-scan
-#	debian/ubuntu/etc:   apt-get install arp-scan
-#	Windows: may God have mercy on your soul
+#	   OSX: brew install arp-scan
+#	   debian/ubuntu/etc:   apt-get install arp-scan
+#	   Windows: may God have mercy on your soul
 
-### Must be run as root!  -l == local network. --retry=1 to reduce retries if you're in a hurry
+# Must be run as root!  -l == local network. --retry=1 to reduce retries if you're in a hurry
 
 sudo arp-scan --verbose -l --retry=1      
 
@@ -44,7 +44,7 @@ sudo arp-scan --verbose -l --retry=1
 # alternative is "nmap -PR 169.254.0.0/16", but this seems to be slower..
 
 # If the arp tests return nothing, can try pinging the ipv4 broadcast address for the subnet (didn't work for me)
-ping -b 169.254.255.255   #<< this doesn't seem to work.
+ping -b 169.254.255.255   # << this doesn't seem to work.
 
 # This did work for me: switch to ipv6 (ping6), and try pinging the ipv6 link-local broadcast address (note interface suffix)
 
