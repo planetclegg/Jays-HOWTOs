@@ -3,8 +3,6 @@
 #### Problem:  Headless raspi, unknown IP.  Need to ssh into it to shut it down or something.  
 
 ```text
-
-
 # if its not been connected to a dhcp network or otherwise configured for static IP, 
 # it probably has a Link-Local address of the form 169.254.x.x (https://en.wikipedia.org/wiki/Link-local_address)
 
@@ -59,5 +57,9 @@ nmap -6 --script=targets-ipv6-multicast-*
 
 ssh -6 pi@fe80::1234::4567::abcd::9876%eth0
 
+# NOTE: If the machine is connected to the network, similar approaches can work.   
+# for iOS there is an app called "fing" that can do network scanning as well.
+
 ```
+
 
