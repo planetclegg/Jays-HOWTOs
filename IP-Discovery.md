@@ -9,6 +9,14 @@
 # Connect a unix/linux/osx computer directly to it via ethernet (raspi supports auto-mdx, so does mac and most
 # modern machines, but if you're unsure use a crossover cable or ethernet hub)
 
+# first just try the following, for a freshly minted raspi install this usually works (because of zeroconf/avahi)
+
+ssh pi@raspberrypi.local
+
+# note that this assumes you have SSH enabled, which is no longer open by default on newer distros
+
+# what follows is what to do if you have a problem with using the zerconf address
+
 # note: wherever you see "eth0" below, substitute the correct network interface (eth0, wlan0, en0, etc).  
 #       use "ifconfig" with no options to dump all interaces
 
